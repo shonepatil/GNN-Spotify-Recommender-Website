@@ -1,5 +1,3 @@
-title: Graph Neural Network Based Spotify Recommender
-description: Creating graph representations of Spotify playlists to better recommend songs to them
-github:
-  repository_url: https://github.com/shonepatil/GNN-Spotify-Recommender-Project
+title: Graph Neural Network on 3D Points
+description: Compare performance of GNN, PointNet, and GNN-PointNet on dataset ModelNet40 and ShapeNet
 theme: jekyll-theme-cayman
