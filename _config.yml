@@ -1,4 +1,5 @@
 title: Graph Neural Network Based Spotify Recommender
+description: Creating graph representations of Spotify playlists to better recommend songs to them
 github:
   repository_url: https://github.com/shonepatil/GNN-Spotify-Recommender-Project
 theme: jekyll-theme-cayman
