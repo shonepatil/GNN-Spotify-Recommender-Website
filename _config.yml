@@ -1,2 +1,4 @@
 theme: jekyll-theme-slate
 title: Graph Neural Network Based Spotify Recommender
+github:
+  repository_url: https://github.com/shonepatil/GNN-Spotify-Recommender-Project
