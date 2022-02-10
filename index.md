@@ -11,17 +11,17 @@ In January 2018, Spotify released a vast dataset containing 1 million playlists 
 Additionally we used Spotify's API to obtain various musical features of songs in order to enrich the recommender to learn from not only the graph structure we created for songs, but also learn from unique aspects of the songs themselves. Some of these features include acousticness, instrumentalness, and danceability as described by Spotify and their algorithmic scoring of such categories.
 
 # Features
-## Song Attributes
+### Song Attributes
 
 # Embeddings
-## Node2Vec
+### Node2Vec
 
-## GraphSAGE
+### GraphSAGE
 
 # Recommenders
-## K-Nearest Neighbors (KNN)
+### K-Nearest Neighbors (KNN)
 
-## Link Prediction
+### Link Prediction
 
 # Results
 
