@@ -40,10 +40,7 @@ For our recommender system to successfully provide personalized recommendations,
 
 # Graph
 
-<p align="center">
-  <img src="images/sample_playlist.png" width="50%">
-</p>
-<p align="center"><em>Sample playlist format</em></p>
+![Image](images/song_graph.png)
 
 # Embeddings
 ### Node2Vec
