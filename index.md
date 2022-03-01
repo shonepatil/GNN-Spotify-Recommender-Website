@@ -43,12 +43,12 @@ The graph we created consists of about 170,000 nodes corresponding to each uniqu
 
 <div align="center">
  
-Category&nbsp;&nbsp;&nbsp; |  Value   
-:---:  | ---: 
-Nodes | 461880
-Edges | 106486690
-Average Degree  | 461.1011
-Features | 13
+| Category | Value |  
+| --- | --- | 
+| Nodes | 461880 |
+| Edges | 106486690 |
+| Average Degree  | 461.1011 |
+| Features | 13 |
 
 </div>
 
