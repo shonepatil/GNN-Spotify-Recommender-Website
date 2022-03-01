@@ -10,7 +10,7 @@ Our song song recommendation system will work with any music dataset that contai
 In January 2018, Spotify released a vast dataset containing 1 million playlists created by users between January 2010, and October 2017 for the purpose of an online data competition to try to predict subsequent tracks within a playlist. Though the competition is over, we used this dataset of user’s playlists to try to create personalized recommendations for a user’s playlist. Currently we have taken the first ten thousand playlists from this dataset to train our model on, though scaling up to include more playlists (and subsequently songs) is possible, but currently not necessary for us to demonstrate the efficacy of this recommender. 
 
 <p align="center">
-  <img src="images/sample_playlist.png" width="40%">
+  <img src="images/sample_playlist.png" width="50%">
 </p>
 <p align="center"><em>Sample playlist format</em></p>
 
@@ -22,19 +22,19 @@ Additionally we used Spotify's API to obtain various musical features of songs i
 
 From these ten thousand playlists, we extracted all of the unique songs, which comes out to around 170,000 unique songs. We then utilized the Spotify developer public API to query information about each of these songs and obtain features for our model. These features include Spotify’s own extracted numerical data from each song, of which we kept the following:
 
-- Danceability - Numerical - How suitable a track is for dancing.
-- Energy - Numerical - Intensity and activity.
-- Loudness - Numerical - Overall loudness of a track in decibels. 
-- Speechiness | Numerical - Presence of spoken words in a track.
-- Acousticness | Numerical - How acoustic the track is.
-- Instrumentalness | Numerical - How instrumental the track is.
-- Liveness | Numerical - The presence of an audience in the recording.
-- Valence | Numerical - The musical positiveness conveyed by a track.
-- Tempo | Numerical - Estimated tempo in beats per minute.
-- Duration | Numerical - Duration of the song in milliseconds.
-- Key | Categorical - The key that the track is in.
-- Mode | Categorical - Major or minor modality of a track.
-- Time Signature | Categorical - Estimate of time signature.
+- Danceability (Numerical) - How suitable a track is for dancing.
+- Energy (Numerical) - Intensity and activity.
+- Loudness (Numerical) - Overall loudness of a track in decibels. 
+- Speechiness (Numerical) - Presence of spoken words in a track.
+- Acousticness (Numerical) - How acoustic the track is.
+- Instrumentalness (Numerical) - How instrumental the track is.
+- Liveness (Numerical) - The presence of an audience in the recording.
+- Valence (Numerical) - The musical positiveness conveyed by a track.
+- Tempo (Numerical) - Estimated tempo in beats per minute.
+- Duration (Numerical) - Duration of the song in milliseconds.
+- Key (Categorical) - The key that the track is in.
+- Mode (Categorical) - Major or minor modality of a track.
+- Time Signature (Categorical) - Estimate of time signature.
 
 For our recommender system to successfully provide personalized recommendations, we work under the assumption that when users create playlists manually, they generally will add songs that are similar to each other in some ways. A playlist could be comprised of songs pertaining to a specific genre like dance music or r&b, but it could also reflect a specific mood like happy songs that make you want to dance, or quiet sad songs. So within a playlist, we would expect the measures of the features above to be quite close to each other.
 
