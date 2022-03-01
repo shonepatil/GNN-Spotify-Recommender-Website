@@ -53,6 +53,7 @@ Below you can see how the graph structure is in an image. The co-occurences are 
 </p>
 <p align="center"><em>Graph structure</em></p>
 
+
 # Embeddings
 ### Node2Vec
 
