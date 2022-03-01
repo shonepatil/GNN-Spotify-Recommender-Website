@@ -44,10 +44,13 @@ The graph we created consists of about 170,000 nodes corresponding to each uniqu
 <p align="center">
   <img src="images/graph_stats.png" width="50%">
 </p>
+<p align="center"><em>Graph stats</em></p>
 
 Below you can see how the graph structure is in an image. The co-occurences are counted by edge and the red edge in this case would have a weight = 2 due to co-occurence happening in 2 different playlists. All other black edges would have a weight = 1.
   
-![Image](images/song_graph.png)
+<p align="center">
+  <img src="images/song_graph.png" width="70%">
+</p>
 <p align="center"><em>Graph structure</em></p>
 
 # Embeddings
