@@ -51,7 +51,6 @@ Average Degree  | 461.1011
 Features | 13
 
 </div>
-<div>
 
 Below you can see how the graph structure is in an image. The co-occurences are counted by edge and the red edge in this case would have a weight = 2 due to co-occurence happening in 2 different playlists. All other black edges would have a weight = 1.
   
