@@ -22,9 +22,9 @@ Additionally we used Spotify's API to obtain various musical features of songs i
 
 From these ten thousand playlists, we extracted all of the unique songs, which comes out to around 170,000 unique songs. We then utilized the Spotify developer public API to query information about each of these songs and obtain features for our model. These features include Spotify’s own extracted numerical data from each song, of which we kept the following:
 
-- Danceability | Numerical - How suitable a track is for dancing.
-- Energy | Numerical - Intensity and activity.
-- Loudness | Numerical - Overall loudness of a track in decibels. 
+- Danceability - Numerical - How suitable a track is for dancing.
+- Energy - Numerical - Intensity and activity.
+- Loudness - Numerical - Overall loudness of a track in decibels. 
 - Speechiness | Numerical - Presence of spoken words in a track.
 - Acousticness | Numerical - How acoustic the track is.
 - Instrumentalness | Numerical - How instrumental the track is.
@@ -52,7 +52,6 @@ Below you can see how the graph structure is in an image. The co-occurences are 
   <img src="images/song_graph.png" width="70%">
 </p>
 <p align="center"><em>Graph structure</em></p>
-
 
 # Embeddings
 ### Node2Vec
