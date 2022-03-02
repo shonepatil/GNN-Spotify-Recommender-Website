@@ -55,6 +55,12 @@ Below you can see how the graph structure is in an image. The co-occurences are 
 
 # Embeddings
 ### Node2Vec
+One of the earlier graph-based methods is the node2vec which uses biased random walks to create low dimensional space representations for nodes. This algorithm aims to preserve node neighborhood networks for the node embeddings and it allows for more accurate classification on nodes because of these neighborhoods. The algorithm utilizes biased 2nd order random walks at the core of its algorithm with p and q tunable parameters to determine the probability of each node subsequent from the original of being visited. Tuning of these parameters allows for the user’s choice of having a more local walk emulating bread-first sampling, or a more explorative walk emulating depth-first sampling. The p parameter determines the probability of a node being revisited right after a step, where a high value makes it less likely that the node is revisited, promoting a depth-first random walk. The q parameter controls the probabilities of stepping to an unvisited node, where a higher value is biased towards local nodes and a smaller value promotes visiting nodes farther from the original.
+
+<p align="center">
+  <img src="images/node2vec_explained.png" width="70%">
+</p>
+<p align="center"><em>Visualization of the node2vec random walk. “t” is the starting node, “v” is the current node in the random walk.</em></p>
 
 ### GraphSAGE
 
