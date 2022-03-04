@@ -79,7 +79,6 @@ With the trained embeddings of songs in hand, given a playlist with k seed track
 
 # Results
 ### Link Prediction Metrics
-
 <p align="center">
   <img src="images/link_pred_metrics.png" width="70%">
 </p>
@@ -87,18 +86,64 @@ With the trained embeddings of songs in hand, given a playlist with k seed track
 
 After running these two models and their respective embeddings, we found that the GraphSAGE embeddings with the MLP predictor gave the highest accuracy. This is as expected, as Node2vec embeddings are quite a bit less complex than the convolutional learning layers that are used in the GraphSAGE embeddings. The high precision entailed that the model was good at predicting edges between songs that should exist for a given song and limited false positives overall. We were more interested in recall as it told us the ratio of predictions out of all edges that do exist between songs. This was important as we believed the strongest recommender would first pull from existing edges that come from a song but aren’t necessarily in a given playlist yet. We saw improvement in both categories and also saw higher AUC scores in GraphSAGE - MLP. The AUC score increase showed better performance in predicting true positives and true negatives over all the data. We can also see this in the ROC curves below that show GraphSAGE - MLP to have a curve closer to the top left than the Node2vec - KNN curve.
 
+
+<p align="center">
+  <img src="images/roc_curves.png" width="70%">
+</p>
+<p align="center"><em>ROC Curves</em></p>
+
+### Playlist Recommendation Results
+All of the following are done on recommendation sets for 200 random playlists. The recommendations are done as sets of the top recommended songs for each unique song in the playlist.
+
+File Location: data/mpd.slice.9000-9999.json
+Name: ‘Happy :)’
+Pid: 9360
+
+Playlist:
+- Lisztomania - Phoenix
+- Rabid Animal - Lake Street Dive
+- Dancing On Quicksand - Bad Suns
+- The Sweet Escape - Gwen Stefani
+- Ants Marching - Dave Matthews Band
+- Rock the Casbah - Remastered
+- Stare Into The Sun - Graffiti6
+- Feel It Still - Portugal. The Man
+- anywayican - WALK THE MOON
+
+Recommendations:
+- John Cougar, John Deere, John 3:16 - Keith Urban
+- The Tiki, Tiki, Tiki Room — The Mellomen
+- Crazy In Love (feat. Jay-Z) — Beyonce
+- Woman — Harry Styles
+- Sweet Caroline — Neil Diamond
+- Before You Start Your Day — Twenty One Pilots
+- X (feat. Future) — 21 Savage
+- Rock and Roll All Nite  — KISS
+- T-Shirt — Migos
+- HUMBLE. — Kendrick lamar
+
+### Feature Distribution in Recommendations
+
+The following tables and histograms are drawn from taking the variance, average, average difference of numerical features in consecutive song pairs, and difference in range from the original playlists and from the recommended sets. The differences between these measures are then taken and the resulting distribution is plotted, indicating the difference in measures for each audio feature. The table shows the average of the distribution of differences for each measure as well.
+
+<p align="center">
+  <img src="images/feat_dist.png" width="70%">
+</p>
+<p align="center"><em>Distribution of Differences for Song Features</em></p>
+
+In general, we saw that little change in the features between the recommended song sets. For most of the variance and average differences the majority of the distribution was below 0.1, especially for the variance of danceability, energy, acousticness, valence, and liveness. There were, however, a few features that did seem to change more between the recommended song sets, such as tempo and duration. These two features were somewhat expected to have a more spread out distribution, as one would not typically expect a playlist to have songs of all very similar length and tempo. Speechiness was the least changing feature, which was a good sign, because oftentimes very speechy playlists consist of rap-heavy songs, and so the recommended songs seemed to reflect that. 
+
+For future iterations of the model, it may be beneficial to try training with some of the less relevant features like duration and tempo removed. At the moment we keep them in to see if they can capture more playlist information.
+
+# Discussion
+We set out to use graph based methods to create Spotify song recommendations for playlists and found promising results overall. We first looked at link prediction metrics to determine how our model performed at finding edges that should already exist between songs as co-occurrence in playlists. The significant boost in AUC score, precision, and recall in GraphSAGE over Node2Vec gave us confidence that more of the graph structure was being learned and potential recommendations as a result could be more useful going forward. The intent was to better encode the graph structure while also retaining song specific features that could traditionally help in song recommendation as we assumed similar songs had less variance in features such as acousticness, beats per minute, or danceability. 
+
+When it came to seeing the playlist recommendation results and the actual tracks that were recommended based on the top candidate tracks for each given song in a sample playlist, we had mixed outcomes. In many cases, the model was able to recommend songs in similar genres, by similar artists, and even specific albums. In other cases, however, the recommendations tended towards largely popular songs and artists without much genre overlap as we wanted. We think this could be due to the highly connected nature of the graph and the heavier weights being put on edges connected to popular songs. In the GraphSAGE neighborhood sampling, songs with few edges may be close in proximity to popular songs through our heavily connected graph structure and thus could have similar neighborhoods even though genres and style might be vastly different. 
+
+One thing we definitely would want to experiment with is different graph structures based on not only playlist co-occurrence, but also album or artist co-occurrence where edges exist between songs if they are in the same album or by the same artist. This would result in a heterogeneous graph that encodes varying weights of information in each edge. We also think that lowering the connectivity by creating edges in a more restrictive way could help with the GraphSAGE neighborhood sampling for less popular songs. Connectivity likely leads to higher importance on popular songs, especially for recommendations and we think the model could personalize better if it functioned on a more representative underlying graph.
+
+For future improvements on obtaining node neighborhoods based on song features, we would like to incorporate a categorical feature that is representative of a song’s genre. This could however be somewhat problematic, as there has always been some debate around certain songs’ classification to certain genres already, and Spotify does not provide features about a song’s genre. Incorporation of such a feature could yield much better results, as many themed playlists seem to be centered around one or two similar genres. Future work could make use of a classification model for basic song genres, and utilize it in the preprocessing for playlist recommendation to add another categorical feature.
+
 # Conclusion
+The business case for this approach to playlist recommendation, is that once the graph is built, it is able to add new data concerning both new nodes and new playlists. GraphSAGE is an inductive approach; re-training of the entire model would not be required. Because Spotify is ever growing, obtaining new users and new songs from artists each day, an approach like this that can easily evolve with growth is needed. Our project provides somewhat of a proof of concept that playlist recommendation with inductive graph learning approaches works, though there is room for improvement. We feel like the idea works in certain instances very well and could help music distribution services find more powerful ways to personalize for users. We tried to put emphasis on not only naively recommending songs from the same artists but also allowing discovery and different styled songs to surface as new avenues to explore.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-```
